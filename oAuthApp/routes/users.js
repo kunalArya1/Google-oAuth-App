@@ -1,9 +1,10 @@
-var express = require('express');
-var router = express.Router();
+var mongoose = require('mongoose');
+mongoose.set('strictQuery', true);
+mongoose.connect("mongodb://127.0.0.1:27017/panku")
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
+var userSchema = mongoose.Schema({
+  username:String,
+  email:String
+  })
 
-module.exports = router;
+module.exports= mongoose.model("user",userSchema);
